@@ -1,5 +1,7 @@
-#root{
+#root {
     padding: 15px;
+    min-width: 350px;
+    padding-bottom: 50px;
 }
 
 .tic-tac-toe {
@@ -12,41 +14,93 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    border: 2px solid #000;
-    background-color: antiquewhite;
+    border: 2px solid #00334e;
+    background-color: #0074b3;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .playing-field__square {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #000;
+    width: 44px;
+    height: 44px;
+    margin: 3px;
+    border: 2px solid #00334e;
     border-radius: 50%;
     box-sizing: border-box;
-    margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2rem;
     font-weight: bold;
+    background-color: white;
+    color: transparent;
 }
 
 .reset {
     display: inline-block;
-    border: 1px solid #000;
+    border: 1px solid #00334e;
     border-radius: 5px;
     cursor: pointer;
-    padding: 5px;
+    padding: 5px 10px;
     margin-top: 10px;
-    color: black;
+    color: #00334e;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.winner{
+.reset:hover {
+    background-color: #00334e;
+    color: white;
+}
+
+.winner {
     font-weight: bold;
     margin-top: 10px;
-    color: red;
+    color: #00334e;
 }
 
 .bg-red {
-    background-color: red;
+    position: relative;
+}
+
+.bg-red::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ff0000bf;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    animation: chip-scale 1s infinite;
+}
+
+.bg-yellow {
+    background-color: yellow;
+    background: url(./bg-yellow-chip.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.bg-green {
+    background-color: green;
+    background: url(./bg-green-chip.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+
+@keyframes chip-scale {
+    50% {
+        background-color: red;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    #root {
+        padding: 3px
+    }
 }
