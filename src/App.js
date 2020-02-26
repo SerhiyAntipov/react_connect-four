@@ -21,6 +21,7 @@ class App extends React.Component {
     //   [35, 36, 37, 38, 39, 40, 41]
     // ];
     this.winnerLine = [];
+    this.winnerHorisontal = [0, 1, 2, 3, 7, 8, 9, 10, 14, 15, 16, 17, 21, 22, 23, 24, 28, 29, 30, 31, 35, 36, 37, 38];
     this.winnerDiagonalLeft = [0, 1, 2, 3, 7, 8, 9, 10, 14, 15, 16, 17];
     this.winnerDiagonalRight = [3, 4, 5, 6, 10, 11, 12, 13, 17, 18, 19, 20];
     this.youMove = ""
@@ -33,10 +34,8 @@ class App extends React.Component {
       winnerAllAray.push(i);
     }
     // horizontal lines
-    for (let i = 0; i < winnerAllAray.length; i++) {
-      if (i + 4 <= winnerAllAray.length) {
-        this.winnerLine.push(winnerAllAray.slice(i, i + 4))
-      }
+    for (let i = 0; i < this.winnerHorisontal.length; i++) {
+      this.winnerLine.push(winnerAllAray.slice(this.winnerHorisontal[i], this.winnerHorisontal[i] + 4));
     }
 
     // vertical lines
@@ -56,7 +55,6 @@ class App extends React.Component {
     }
     this.nextmove();
   }
-
 
   nextmove = () => {
     if (this.state.end === false) {
@@ -82,12 +80,15 @@ class App extends React.Component {
       let count = this.state.count;
       let dataId = event.target.getAttribute('data-id');
       let curentPlayingField = this.state.playingField;
-      if (event.target.innerText === '' || curentPlayingField[dataId] === null) {
+      if (curentPlayingField[dataId] === null) {
 
-        let tempDataId = +dataId
-        for (let i = tempDataId; i <= this.state.playingField.length; i = i + 7) {
-          if (this.state.playingField[tempDataId + 7] === null) {
-            tempDataId = tempDataId + 7
+        let tempDataId = Number(dataId)
+
+        // discs fall on the lower free row 
+        let discInRow = 7
+        for (let i = tempDataId; i <= this.state.playingField.length; i = i + discInRow) {
+          if (this.state.playingField[tempDataId + discInRow] === null) {
+            tempDataId = i;
           }
         }
 
