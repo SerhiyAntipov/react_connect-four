@@ -10,7 +10,6 @@ class App extends React.Component {
       count: 0,
       winner: '',
       move: '',
-      nextmove: '',
       end: false
     };
     // this.field = [
@@ -60,31 +59,44 @@ class App extends React.Component {
 
 
   nextmove = () => {
-    if (this.state.count % 2 === 0) {
-      this.youMove = "yellow move"
-    } else {
-      this.youMove = "green move"
-    }
+    if (this.state.end === false) {
+      if (this.state.count % 2 === 0) {
+        this.youMove = <div className='yellow move'>yellow move</div>
+      } else {
+        this.youMove = <div className='green move'>green move</div>
+      }
+    } else (
+      this.youMove = ''
+    )
   }
 
-  static getDerivedStateFromProps(props, state) {
-    return {
-      playingField2: props.appData.playingField
-    }
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   return {
+  //     playingField2: props.appData.playingField
+  //   }
+  // }
 
   clickHandler = (event) => {
+    let playingFieldSquare = document.querySelectorAll('.playing-field__square')
     if (this.state.end === false) {
       let count = this.state.count;
       let dataId = event.target.getAttribute('data-id');
       let curentPlayingField = this.state.playingField;
       if (event.target.innerText === '' || curentPlayingField[dataId] === null) {
-        if (count % 2 === 0) {
-          curentPlayingField[dataId] = 'X';
-          event.target.classList.add("bg-yellow")
-        } else {
-          curentPlayingField[dataId] = 'O';
-          event.target.classList.add("bg-green")
+
+        let tempDataId = +dataId
+        for (let i = tempDataId; i <= this.state.playingField.length; i = i + 7) {
+          if (this.state.playingField[tempDataId + 7] === null) {
+            tempDataId = tempDataId + 7
+          }
+        }
+
+        if (count % 2 === 0 && curentPlayingField[dataId] === null) {
+          curentPlayingField[tempDataId] = 'X';
+          playingFieldSquare[tempDataId].classList.add("bg-yellow")
+        } else if (count % 2 !== 0 && curentPlayingField[dataId] === null) {
+          curentPlayingField[tempDataId] = 'O';
+          playingFieldSquare[tempDataId].classList.add("bg-green")
         }
         this.setState({ count: count + 1 });
         this.winner();
@@ -119,12 +131,12 @@ class App extends React.Component {
         for (let i = 0; i < line.length; i++) {
           field[line[i]].classList.add("bg-red");
         }
-        this.setState({end: true})
+        this.setState({ end: true })
       }
     }
   }
 
-  
+
   resetApp = () => {
     this.setState({ playingField: Array(42).fill(null) });
     this.setState({ count: 0 });
@@ -159,9 +171,9 @@ class App extends React.Component {
           })}
         </div>
         <div className="play-informstions">
-          {this.state.winner}
           <div className="reset" onClick={this.resetApp}>Reset</div>
-          <div className={this.youMove}>{this.youMove}</div>
+          {this.state.winner}
+          {this.youMove}
         </div>
       </div>
     )

@@ -6,11 +6,19 @@
 
 .connect-four {
     text-align: center;
+    padding-bottom: 20px;
 }
 
 h1{
     color: #0074b3;
+    margin: 10px;
 }
+
+p{
+    margin-top: 0;
+    line-height: 1.2;
+}
+
 .playing-field {
     width: 350px;
     height: 300px;
@@ -27,7 +35,6 @@ h1{
     box-shadow: 0px 1px 2px 1px #000,
     inset 0px 0px 2px 1px #000;
     user-select: none;  
-
 }
 
 .playing-field__square {
@@ -98,6 +105,11 @@ h1{
     text-transform: capitalize;
 }
 
+.winner{
+    animation: winner-rotate 1s infinite; 
+}
+
+
 .bg-red {
     position: relative;
 }
@@ -145,6 +157,18 @@ h1{
         background-color: #ff0000bf;
     }
 }
+
+@keyframes winner-rotate {
+    25% {
+        transform: rotate(10deg);
+        color: red;
+    }
+    75% {
+        transform: rotate(-10deg);
+        color: white;
+    }
+}
+
 
 @media only screen and (max-width: 600px) {
     #root {
