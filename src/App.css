@@ -4,7 +4,7 @@
     padding-bottom: 50px;
 }
 
-.tic-tac-toe {
+.connect-four {
     text-align: center;
 }
 
@@ -48,27 +48,54 @@ h1{
     box-shadow: inset 0px 1px 2px 1px #000000d6;
 }
 
+.play-informstions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.play-informstions div{
+    margin: 0 10px;
+}
+
 .reset {
-    display: inline-block;
-    border: 1px solid #0074b3;
-    border-radius: 5px;
+    background-color: #0074b3;
+    border-radius: 50%;
     cursor: pointer;
-    padding: 5px 10px;
-    margin-top: 10px;
-    color: #0074b3;
+    color: white;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 2px 1px #000000d6;
+    font-size: 10px;
+    transition: all .3s ease-out;
 }
 
 .reset:hover {
-    background-color: #0074b3;
-    color: white;
+    background-color: #02669c;
+    color: #ebebeb;
+    box-shadow: inset 0px 0px 3px 0px #000000d6;
+    transition: all .3s ease-out;
 }
 
-.winner {
+.yellow.winner,  .green.winner, .yellow.move,  .green.move{
+    border-radius: 50%;
+    color: white;
     font-weight: bold;
-    margin-top: 10px;
-    color: #0074b3;
+    text-transform: uppercase;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0px 0px 2px 1px #000000d6;
+    font-size: 10px;
+    text-transform: capitalize;
 }
 
 .bg-red {
@@ -78,38 +105,46 @@ h1{
 .bg-red::before {
     content: "";
     display: block;
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     border: 2px solid #ff0000bf;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 51%;
     transform: translate(-50%, -50%);
     animation: chip-scale 1s infinite;
 }
 
 .bg-yellow {
-    background-color: #008d49;
+    background-color: #cdae00;
     background: url(./bg-yellow-chip.png) no-repeat #cdae00;
     background-size: contain;
     background-position: center;
 }
 
-.bg-green {
+.bg-green, .green {
     background-color: #008d49;
     background: url(./bg-green-chip.png) no-repeat #008d49;
     background-size: contain;
     background-position: center;
 }
 
+.yellow {
+    background-color: #cdae00;
+    background:  #cdae00;
+}
+
+.green {
+    background-color: #008d49;
+    background: #008d49;
+}
 
 @keyframes chip-scale {
     50% {
         background-color: #ff0000bf;
     }
 }
-
 
 @media only screen and (max-width: 600px) {
     #root {

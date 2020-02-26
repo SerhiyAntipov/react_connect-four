@@ -8,9 +8,10 @@ class App extends React.Component {
     this.state = {
       playingField: Array(42).fill(null),
       count: 0,
-      reset: '',
       winner: '',
-      move: ''
+      move: '',
+      nextmove: '',
+      end: false
     };
     // this.field = [
     //   [0,  1,  2,  3,  4,  5,  6 ],
@@ -23,6 +24,7 @@ class App extends React.Component {
     this.winnerLine = [];
     this.winnerDiagonalLeft = [0, 1, 2, 3, 7, 8, 9, 10, 14, 15, 16, 17];
     this.winnerDiagonalRight = [3, 4, 5, 6, 10, 11, 12, 13, 17, 18, 19, 20];
+    this.youMove = ""
   }
 
 
@@ -53,31 +55,44 @@ class App extends React.Component {
     for (let i = 0; i < this.winnerDiagonalRight.length; i++) {
       this.winnerLine.push([this.winnerDiagonalRight[i], this.winnerDiagonalRight[i] + 6, this.winnerDiagonalRight[i] + 12, this.winnerDiagonalRight[i] + 18])
     }
+    this.nextmove();
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   return {
-  //     playingField: props.appData.playingField
-  //   }
-  // }
+
+  nextmove = () => {
+    if (this.state.count % 2 === 0) {
+      this.youMove = "yellow move"
+    } else {
+      this.youMove = "green move"
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {
+      playingField2: props.appData.playingField
+    }
+  }
 
   clickHandler = (event) => {
-    let count = this.state.count;
-    let dataId = event.target.getAttribute('data-id');
-    let curentPlayingField = this.state.playingField;
-    if (event.target.innerText === '' || curentPlayingField[dataId] === null) {
-      if (count % 2 === 0) {
-        curentPlayingField[dataId] = 'X';
-        event.target.classList.add("bg-yellow")
+    if (this.state.end === false) {
+      let count = this.state.count;
+      let dataId = event.target.getAttribute('data-id');
+      let curentPlayingField = this.state.playingField;
+      if (event.target.innerText === '' || curentPlayingField[dataId] === null) {
+        if (count % 2 === 0) {
+          curentPlayingField[dataId] = 'X';
+          event.target.classList.add("bg-yellow")
+        } else {
+          curentPlayingField[dataId] = 'O';
+          event.target.classList.add("bg-green")
+        }
+        this.setState({ count: count + 1 });
+        this.winner();
       } else {
-        curentPlayingField[dataId] = 'O';
-        event.target.classList.add("bg-green")
+        alert('field is occupied')
       }
-      this.setState({ count: count + 1 });
-      this.winner();
-    } else {
-      alert('field is occupied')
     }
+
   }
 
   winner = () => {
@@ -91,43 +106,30 @@ class App extends React.Component {
       ) {
 
         if (move === 'X') {
-          move = "Yellow"
+          move = "yellow winner"
         } else {
-          move = "Green"
+          move = "green winner"
         }
 
-        let winner = <div className="winner">{move} Winner</div>;
+        let winner = <div className={move}>{move}</div>;
         this.setState({ winner: winner });
-
-        let reset = <div className="reset" onClick={this.resetApp}>Reset</div>
-        this.setState({ reset: reset })
 
         let field = document.querySelectorAll('.playing-field__square');
 
-        // field[line[0]].classList.add("bg-red");
-        // field[line[1]].classList.add("bg-red");
-        // field[line[2]].classList.add("bg-red");
-        // field[line[3]].classList.add("bg-red");
         for (let i = 0; i < line.length; i++) {
           field[line[i]].classList.add("bg-red");
         }
-        // setTimeout(() => {
-        //   this.resetApp()
-        // }, 5000)
+        this.setState({end: true})
       }
-    }
-
-    if (this.state.count === 41) {
-      let reset = <div className="reset" onClick={this.resetApp}>Reset</div>
-      this.setState({ reset: reset })
     }
   }
 
+  
   resetApp = () => {
     this.setState({ playingField: Array(42).fill(null) });
     this.setState({ count: 0 });
-    this.setState({ reset: '' });
     this.setState({ winner: '' });
+    this.setState({ end: false });
     let redField = document.querySelectorAll('.bg-red');
     let greenField = document.querySelectorAll('.bg-green');
     let yellowField = document.querySelectorAll('.bg-yellow');
@@ -142,21 +144,11 @@ class App extends React.Component {
     }
   }
 
-  // moveYou = () => {
-  //   if (this.state.count % 2 === 0) {
-  //     let move1 = <div className="move-green"></div>;
-  //     this.setState({ move: move1 })
-  //   } else {
-  //     let move1 = <div className="move-yellow"></div>;
-  //     this.setState({  move : move1  })
-  //   }
-  // };
-
   render() {
     let appData = this.props.appData;
     this.calcWinnerline();
     return (
-      <div className="tic-tac-toe">
+      <div className="connect-four">
         <h1>{appData.title}</h1>
         <p>{appData.description}</p>
         <div className="playing-field">
@@ -166,9 +158,11 @@ class App extends React.Component {
             )
           })}
         </div>
-        {this.state.winner}
-        {this.state.reset}
-        {/* {this.move} */}
+        <div className="play-informstions">
+          {this.state.winner}
+          <div className="reset" onClick={this.resetApp}>Reset</div>
+          <div className={this.youMove}>{this.youMove}</div>
+        </div>
       </div>
     )
   }
