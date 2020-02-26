@@ -8,23 +8,33 @@
     text-align: center;
 }
 
+h1{
+    color: #0074b3;
+}
 .playing-field {
     width: 350px;
     height: 300px;
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    border: 2px solid #00334e;
+    border: 1px solid #00334e;
     background-color: #0074b3;
     margin: 0 auto;
-    padding: 0;
+    padding: 4px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 2px 1px #000,
+    inset 0px 0px 2px 1px #000;
+    user-select: none;  
+
 }
 
 .playing-field__square {
-    width: 44px;
-    height: 44px;
-    margin: 3px;
-    border: 2px solid #00334e;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border: 1px solid #00334e;
     border-radius: 50%;
     box-sizing: border-box;
     padding: 0;
@@ -35,29 +45,30 @@
     font-weight: bold;
     background-color: white;
     color: transparent;
+    box-shadow: inset 0px 1px 2px 1px #000000d6;
 }
 
 .reset {
     display: inline-block;
-    border: 1px solid #00334e;
+    border: 1px solid #0074b3;
     border-radius: 5px;
     cursor: pointer;
     padding: 5px 10px;
     margin-top: 10px;
-    color: #00334e;
+    color: #0074b3;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .reset:hover {
-    background-color: #00334e;
+    background-color: #0074b3;
     color: white;
 }
 
 .winner {
     font-weight: bold;
     margin-top: 10px;
-    color: #00334e;
+    color: #0074b3;
 }
 
 .bg-red {
@@ -72,21 +83,22 @@
     border-radius: 50%;
     border: 2px solid #ff0000bf;
     position: absolute;
-    top: 6px;
-    left: 6px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     animation: chip-scale 1s infinite;
 }
 
 .bg-yellow {
-    background-color: yellow;
-    background: url(./bg-yellow-chip.png) no-repeat;
+    background-color: #008d49;
+    background: url(./bg-yellow-chip.png) no-repeat #cdae00;
     background-size: contain;
     background-position: center;
 }
 
 .bg-green {
-    background-color: green;
-    background: url(./bg-green-chip.png) no-repeat;
+    background-color: #008d49;
+    background: url(./bg-green-chip.png) no-repeat #008d49;
     background-size: contain;
     background-position: center;
 }
@@ -94,7 +106,7 @@
 
 @keyframes chip-scale {
     50% {
-        background-color: red;
+        background-color: #ff0000bf;
     }
 }
 
