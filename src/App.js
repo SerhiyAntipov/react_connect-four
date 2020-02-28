@@ -59,9 +59,9 @@ class App extends React.Component {
   nextmove = () => {
     if (this.state.end === false) {
       if (this.state.count % 2 === 0) {
-        this.youMove = <div className='yellow move'>yellow move</div>
+        this.youMove = <div className='yellow move'><p>yellow move</p></div>
       } else {
-        this.youMove = <div className='green move'>green move</div>
+        this.youMove = <div className='green move'><p>green move</p></div>
       }
     } else (
       this.youMove = ''
@@ -124,7 +124,7 @@ class App extends React.Component {
           move = "green winner"
         }
 
-        let winner = <div className={move}>{move}</div>;
+        let winner = <div className={move}><p>{move}</p></div>;
         this.setState({ winner: winner });
 
         let field = document.querySelectorAll('.playing-field__square');
@@ -163,19 +163,22 @@ class App extends React.Component {
     return (
       <div className="connect-four">
         <h1>{appData.title}</h1>
-        <p>{appData.description}</p>
-        <div className="playing-field">
-          {this.state.playingField.map((obect, i) => {
-            return (
-              <div key={'data-id' + i} data-id={i} className="playing-field__square" onClick={this.clickHandler}>{obect}</div>
-            )
-          })}
+        <div className="play-app">
+          <div className="playing-field">
+            {this.state.playingField.map((obect, i) => {
+              return (
+                <div key={'data-id' + i} data-id={i} className="playing-field__square" onClick={this.clickHandler}>{obect}</div>
+              )
+            })}
+          </div>
+          <div className="play-informstions">
+            <div className="reset" onClick={this.resetApp}><p>Reset</p></div>
+            {this.state.winner}
+            {this.youMove}
+          </div>
         </div>
-        <div className="play-informstions">
-          <div className="reset" onClick={this.resetApp}>Reset</div>
-          {this.state.winner}
-          {this.youMove}
-        </div>
+        <p className="description">{appData.description}</p>
+        <div className="table"></div>
       </div>
     )
   }
