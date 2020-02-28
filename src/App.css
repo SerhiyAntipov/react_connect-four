@@ -2,7 +2,7 @@
     min-height: calc(100vh - 40px);
     padding: 20px 0;
     background: #e7e7e7;
-    min-width: 360px;
+    min-width: 340px;
     position: relative;
 }
 
@@ -192,8 +192,8 @@ h1 {
 .bg-red::before {
     content: "";
     display: block;
-    width: 26px;
-    height: 22px;
+    width: 22px;
+    height: 16px;
     border-radius: 50%;
     border: 2px solid #ff0000bf;
     position: absolute;
