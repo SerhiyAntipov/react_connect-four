@@ -4,6 +4,7 @@
     background: #e7e7e7;
     min-width: 340px;
     position: relative;
+    overflow: hidden;
 }
 
 .connect-four {
@@ -22,7 +23,7 @@ h1 {
     font-size: 16px;
     max-width: 360px;
     margin: auto;
-    transform: perspective(360px) rotateX(35deg);
+    transform: perspective(400px) rotateX(20deg);
     margin-top: -20px;
     padding: 0 15px;
     position: relative;
@@ -50,14 +51,14 @@ h1 {
     justify-content: center;
     align-items: center;
     user-select: none;
-    transform: perspective(500px) rotateX(-10deg);
+    transform: perspective(700px) rotateX(-7deg);
     padding-left: 20px;
     padding-right: 20px;
 }
 
 .playing-field__square {
     width: 46px;
-    height: 40px;
+    height: 42px;
     margin: 1px;
     border: 1px solid #00334e;
     border-radius: 50%;
@@ -70,7 +71,7 @@ h1 {
     font-weight: bold;
     background-color: #e7e7e7;
     color: transparent;
-    box-shadow: inset 0px -4px 0px 1px #002f52;
+    box-shadow: inset 0px -3px 0px 1px #002f52;
     cursor: pointer;
 }
 
@@ -83,7 +84,7 @@ h1 {
 .playing-field__square[data-id='34'] {
     background-color: #B6532E;
     background: #B6532E;
-    background: linear-gradient(to bottom, #fff, #fff 20%, #B6532E 20%, #B6532E 70%, #004478 70%);
+    background: linear-gradient(to bottom, #B6532E, #B6532E 70%, #004478 70%);
 }
 
 .playing-field__square[data-id='35'],
@@ -101,7 +102,7 @@ h1 {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 22px;
+    padding-top: 19px;
     height: 28px;
     overflow: hidden;
 }
@@ -192,12 +193,12 @@ h1 {
 .bg-red::before {
     content: "";
     display: block;
-    width: 22px;
+    width: 20px;
     height: 16px;
     border-radius: 50%;
     border: 2px solid #ff0000bf;
     position: absolute;
-    left: 50%;
+    left: 51%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
@@ -207,7 +208,7 @@ h1 {
     background: url(./bg-yellow-chip.png) no-repeat #cdae00;
     background-size: 95% 95%;
     background-position: center;
-    box-shadow: inset 0px 1px 2px 0px #002f52, inset 0px -2px 0px 0px #002f52;
+    box-shadow: inset 0px 1px 2px 0px #002f52, inset 0px -1px 0px 0px #002f52;
 }
 
 #root .bg-green {
@@ -215,7 +216,7 @@ h1 {
     background: url(./bg-green-chip.png) no-repeat #008d49;
     background-size: 95% 95%;
     background-position: center;
-    box-shadow: inset 0px 1px 2px 0px #002f52, inset 0px -2px 0px 0px #002f52;
+    box-shadow: inset 0px 1px 2px 0px #002f52, inset 0px -1px 0px 0px #002f52;
 }
 
 .yellow {
@@ -234,7 +235,7 @@ h1 {
     background: linear-gradient(to top, #75351d, #B6532E);
     position: absolute;
     z-index: 0;
-    top: 314px;
+    top: 312px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -278,19 +279,20 @@ h1 {
     }
 
     .playing-field__square {
-        width: 40px;
-        height: 33px;
+        width: 39px;
+        height: 35px;
     }
 
     .play-informstions {
-        padding-top: 13px;
+        padding-top: 8px;
     }
 
     .description {
         max-width: 280px;
         margin-top: -20px;
+        transform: perspective(400px) rotateX(17deg);
     }
-
+    
     .play-informstions p {
         margin-top: 2px;
     }
@@ -305,7 +307,7 @@ h1 {
     }
 
     .table {
-        top: 245px;
+        top: 254px;
     }
 
     .playing-field__square[data-id='28'],
