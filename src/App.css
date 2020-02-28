@@ -1,7 +1,9 @@
 #root {
     min-height: calc(100vh - 40px);
     padding: 20px 0;
+    background-color:#e7e7e7 ;
     background: #e7e7e7;
+    background: linear-gradient(to top, #e7e7e7 75%, #fff);
     min-width: 340px;
     position: relative;
     overflow: hidden;
@@ -21,13 +23,14 @@ h1 {
 .description {
     line-height: 1.2;
     font-size: 16px;
-    max-width: 360px;
+    max-width: 400px;
     margin: auto;
-    transform: perspective(400px) rotateX(20deg);
+    transform: perspective(400px) rotateX(22deg);
     margin-top: -20px;
     padding: 0 15px;
     position: relative;
     z-index: 1;
+    color: #3f1e12;
 }
 
 .play-app {
@@ -82,9 +85,9 @@ h1 {
 .playing-field__square[data-id='32'],
 .playing-field__square[data-id='33'],
 .playing-field__square[data-id='34'] {
-    background-color: #B6532E;
-    background: #B6532E;
-    background: linear-gradient(to bottom, #B6532E, #B6532E 70%, #004478 70%);
+    background-color: #c6c6c6;
+    background: #c6c6c6;
+    /* background: linear-gradient(to bottom, #B6532E, #B6532E 70%, #004478 70%); */
 }
 
 .playing-field__square[data-id='35'],
@@ -94,8 +97,10 @@ h1 {
 .playing-field__square[data-id='39'],
 .playing-field__square[data-id='40'],
 .playing-field__square[data-id='41'] {
-    background-color: #0865a5;
-    background: #0865a5;
+    /* background-color: #0865a5;
+    background: #0865a5; */
+    background-color: #c6c6c6;
+    background: #c6c6c6;
 }
 
 .play-informstions {
@@ -231,8 +236,11 @@ h1 {
 }
 
 .table {
-    background-color: #B6532E;
-    background: linear-gradient(to top, #75351d, #B6532E);
+    /* background-color: #B6532E; */
+    /* background: linear-gradient(to top, #75351d, #B6532E); */
+    background-color: #c6c6c6;
+    background: #c6c6c6;
+    background: linear-gradient(to top, #757575, #c6c6c6);
     position: absolute;
     z-index: 0;
     top: 312px;
@@ -288,11 +296,11 @@ h1 {
     }
 
     .description {
-        max-width: 280px;
+        max-width: 320px;
         margin-top: -20px;
-        transform: perspective(400px) rotateX(17deg);
+        /* transform: perspective(400px) rotateX(17deg); */
     }
-    
+
     .play-informstions p {
         margin-top: 2px;
     }
@@ -317,14 +325,14 @@ h1 {
     .playing-field__square[data-id='32'],
     .playing-field__square[data-id='33'],
     .playing-field__square[data-id='34'] {
-        background-color: #B6532E;
-        background: #B6532E;
-        background: linear-gradient(to bottom, #B6532E, #B6532E 70%, #004478 70%);
+        background-color: #c6c6c6;
+        background: #c6c6c6;
+        /* background: linear-gradient(to bottom, #B6532E, #B6532E 70%, #004478 70%); */
     }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 340px) {
     .description {
-        max-width: 260px;
+        /* max-width: 260px; */
     }
 }
