@@ -162,6 +162,7 @@ class App extends React.Component {
     this.calcWinnerline();
     return (
       <div className="connect-four">
+        <h2>{appData.title_react}</h2>
         <h1>{appData.title}</h1>
         <div className="play-app">
           <div className="playing-field">
